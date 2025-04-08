@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +10,5 @@ import { HomeComponent } from './home/home.component';
 })
 export class AppComponent {
   title = 'foodmine';
+
 }
