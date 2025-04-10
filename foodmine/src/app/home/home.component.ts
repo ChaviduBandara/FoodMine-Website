@@ -4,15 +4,18 @@ import { NgFor } from '@angular/common';
 import { Food } from '../shared/models/Food';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NgFor, CommonModule],
+  imports: [NgFor, CommonModule, SearchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   foods: Food[] = [];
+  searchTerm: string = '';
+
   constructor(private foodService: FoodService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
