@@ -3,20 +3,26 @@ import { FoodService } from '../services/food/food.service';
 import { NgFor } from '@angular/common';
 import { Food } from '../shared/models/Food';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   imports: [NgFor, CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
+  foods: Food[] = [];
+  constructor(private foodService: FoodService, private route: ActivatedRoute) {}
 
-  foods:Food[] = [];
-  constructor(private foodService:FoodService){}
-
-  ngOnInit(): void{
-    this.foods = this.foodService.getAll();
-  }
-
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params['searchTerm']){
+        this.foods = this.foodService.getAll().filter(food => food.name.toLowerCase().includes(params['searchTerm'].toLowerCase())
+      );
+      }else
+        this.foods = this.foodService.getAll();
+      
+    })
+  }  
 }

@@ -50,6 +50,7 @@ li a:hover{
 .origins span{
     border-radius: 2rem;
     background-color: whitesmoke;
+    color: #414141;
     display: inline-block;
     font-size: .9rem;
 }
