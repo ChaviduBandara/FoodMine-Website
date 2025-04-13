@@ -1,11 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Food } from '../../shared/models/Food';
+import { Tag } from '../../shared/models/tags';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FoodService {
   constructor() {}
+
+
+  getFoodById(id: number){
+    return this.getAll().find(food => food.id == id);
+  }
+
+  getAllTags():Tag[]{
+    return[
+      {name: 'All', count: 13},
+      {name: 'FastFood', count: 8},
+      {name: 'SlowFood', count: 6},
+      {name: 'Lunch', count: 7},
+      {name: 'Soup', count: 1},
+    ]
+  }
+
+  getAllFoodsByTag(tag:string):Food[]{
+    if(tag == "All")
+      return this.getAll();
+      else
+      return this.getAll().filter(food => food.tags?.includes(tag));
+  }
 
   getAll(): Food[] {
     return [
@@ -84,7 +107,7 @@ export class FoodService {
         origins: ['india'],
         stars: 5.0,
         imageUrl: '/assets/Images/food-10.jpg',
-        tags: ['FastFood', 'Biryani', 'Lunch'],
+        tags: ['SlowFood', 'Biryani', 'Lunch'],
       },
       {
         id: 8,
@@ -95,7 +118,7 @@ export class FoodService {
         origins: ['usa'],
         stars: 5.0,
         imageUrl: '/assets/Images/food-15.jpg',
-        tags: ['FastFood', 'steak', 'Lunch'],
+        tags: ['SlowFood', 'steak', 'Lunch'],
       },
       {
         id: 9,
@@ -106,7 +129,7 @@ export class FoodService {
         origins: ['france'],
         stars: 4.0,
         imageUrl: '/assets/Images/food-8.jpg',
-        tags: ['FastFood', 'Croissant', 'Lunch'],
+        tags: ['FastFood', 'Croissant'],
       },
       {
         id: 10,
@@ -117,7 +140,7 @@ export class FoodService {
         origins: ['canada'],
         stars: 3.0,
         imageUrl: '/assets/Images/food-11.jpg',
-        tags: ['FastFood', 'Poutine', 'Lunch'],
+        tags: ['FastFood', 'Poutine'],
       },
       {
         id: 11,
@@ -128,7 +151,7 @@ export class FoodService {
         origins: ['lebanon'],
         stars: 5.0,
         imageUrl: '/assets/Images/food-13.jpg',
-        tags: ['FastFood', 'Shawarma', 'Lunch'],
+        tags: ['FastFood', 'Shawarma'],
       },
       {
         id: 12,
@@ -139,7 +162,7 @@ export class FoodService {
         origins: ['japan'],
         stars: 4.0,
         imageUrl: '/assets/Images/food-12.jpg',
-        tags: ['FastFood', 'Ramen', 'Lunch'],
+        tags: ['SlowFood', 'Ramen', 'Lunch'],
       },
       {
         id: 13,

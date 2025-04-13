@@ -3,12 +3,13 @@ import { FoodService } from '../services/food/food.service';
 import { NgFor } from '@angular/common';
 import { Food } from '../shared/models/Food';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
+import { TagsComponent } from "../tags/tags.component";
 
 @Component({
   selector: 'app-home',
-  imports: [NgFor, CommonModule, SearchComponent],
+  imports: [NgFor, CommonModule, SearchComponent, TagsComponent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -23,7 +24,9 @@ export class HomeComponent implements OnInit {
       if (params['searchTerm']){
         this.foods = this.foodService.getAll().filter(food => food.name.toLowerCase().includes(params['searchTerm'].toLowerCase())
       );
-      }else
+      }else if(params['tag'])
+        this.foods = this.foodService.getAllFoodsByTag(params['tag']);
+      else
         this.foods = this.foodService.getAll();
       
     })
