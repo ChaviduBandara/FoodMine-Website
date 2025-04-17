@@ -9,6 +9,7 @@ a{
 a:hover{
     background: #e72929;
     color: white;
+    cursor: pointer;
 }
 .container{
     margin: 0 auto;
