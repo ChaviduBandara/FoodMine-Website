@@ -4,6 +4,7 @@ import { Cart } from '../shared/models/Cart';
 import { CartItem } from '../shared/models/CardItem';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FoodService } from '../services/food/food.service';
 
 @Component({
   selector: 'app-cart-page',
